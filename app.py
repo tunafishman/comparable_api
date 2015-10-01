@@ -1,26 +1,15 @@
 #!../flask/bin/python
+from comparable import Comparable
 from flask import Flask, jsonify
 
 app = Flask(__name__)
+comparables = [Comparable()]
 
-tasks = [
-    {
-        'id': 1,
-        'title': u'Buy Groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web',
-        'done': False,
-    }
-]
-
-@app.route('/todo/api/v1.0/tasks', methods=['GET'])
-def get_tasks():
-    return jsonify({'tasks': tasks})
+@app.route('/comparables/cid/<int:cid>', methods=['GET'])
+def get_comparables_by_cid(cid):
+    scrubber = lambda x: x.Cid() == cid
+    returns = [comp.Json() for comp in filter(scrubber, comparables)]
+    return jsonify({'comparables': returns})
 
 def index():
     return "Hello, World!"
