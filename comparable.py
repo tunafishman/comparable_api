@@ -2,7 +2,7 @@
 
 class Comparable(object):
 
-    def __init__(self):
+        def __init__(self, cid):
         self.name = 'carl'
         self.geo = 'us-west-2'
         self.cid = 1
