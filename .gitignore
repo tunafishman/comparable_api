@@ -59,4 +59,4 @@ target/
 venv 
 *.pyc 
 .DS_Store
-
+credentials.py
